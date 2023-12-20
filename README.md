@@ -23,3 +23,5 @@ US2: Complete Order for the products in the cart
 US3: Search for Products  
 US4: Top Deals  
 US5: Use Promo Codes/Coupons for an Order  
+
+US5: Use Promo Codes-Coupons for an Order 
