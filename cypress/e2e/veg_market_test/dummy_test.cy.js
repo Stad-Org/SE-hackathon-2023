@@ -53,8 +53,12 @@ describe('Add the First Product to Cart', function () {
       // Type the product name in the search field
       cy.get('.search-keyword').type(product.name);
 
-      // Wait for the search to complete (you can improve this by waiting for a specific element)
-      cy.wait(1000); // Adjust the wait time as needed
+      // Every search here should yield only one result
+      cy.get('.products .product').its('length').should('eq', 1); 
+
+      // Check that product has correct name and price
+      cy.get('.products .product').first().find('.product-name').should('contain', product.name);
+      cy.get('.products .product').first().find('.product-price').should('contain', product.price);
 
       // Click the "ADD TO CART" button for the first product
       cy.get('.products .product').first().contains('ADD TO CART').click();
@@ -95,8 +99,12 @@ describe('Add Products to Cart', function () {
         // Type the product name in the search field
         cy.get('.search-keyword').type(product.name);
 
-        // Wait for the search to complete (you can improve this by waiting for a specific element)
-        cy.wait(1000); // Adjust the wait time as needed
+        // Every search here should yield only one result
+        cy.get('.products .product').its('length').should('eq', 1); 
+
+              // Check that product has correct name and price
+      cy.get('.products .product').first().find('.product-name').should('contain', product.name);
+      cy.get('.products .product').first().find('.product-price').should('contain', product.price);
 
         // Click the "ADD TO CART" button for the first product
         cy.get('.products .product').first().contains('ADD TO CART').click();
