@@ -1,5 +1,7 @@
 # SE-hackathon-2023
 
+## Instructions:
+- run `npx cypress open`
 
 ## Excel link (WARNING: LINK WITH EDIT ACCESS, DO NOT SHARE)
 https://docs.google.com/spreadsheets/d/15tYQ1q4_kBapgzO1hVaRPjyeVenHPGeu/edit#gid=485496501

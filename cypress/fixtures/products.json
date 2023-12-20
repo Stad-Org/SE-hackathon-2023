@@ -1,0 +1,123 @@
+[
+    {
+      "name": "Brocolli - 1 Kg",
+      "price": 120
+    },
+    {
+      "name": "Cauliflower - 1 Kg",
+      "price": 60
+    },
+    {
+      "name": "Cucumber - 1 Kg",
+      "price": 48
+    },
+    {
+      "name": "Beetroot - 1 Kg",
+      "price": 32
+    },
+    {
+      "name": "Carrot - 1 Kg",
+      "price": 56
+    },
+    {
+      "name": "Tomato - 1 Kg",
+      "price": 16
+    },
+    {
+      "name": "Beans - 1 Kg",
+      "price": 82
+    },
+    {
+      "name": "Brinjal - 1 Kg",
+      "price": 35
+    },
+    {
+      "name": "Capsicum",
+      "price": 60
+    },
+    {
+      "name": "Mushroom - 1 Kg",
+      "price": 75
+    },
+    {
+      "name": "Potato - 1 Kg",
+      "price": 22
+    },
+    {
+      "name": "Pumpkin - 1 Kg",
+      "price": 48
+    },
+    {
+      "name": "Corn - 1 Kg",
+      "price": 75
+    },
+    {
+      "name": "Onion - 1 Kg",
+      "price": 16
+    },
+    {
+      "name": "Apple - 1 Kg",
+      "price": 72
+    },
+    {
+      "name": "Banana - 1 Kg",
+      "price": 45
+    },
+    {
+      "name": "Grapes - 1 Kg",
+      "price": 60
+    },
+    {
+      "name": "Mango - 1 Kg",
+      "price": 75
+    },
+    {
+      "name": "Musk Melon - 1 Kg",
+      "price": 36
+    },
+    {
+      "name": "Orange - 1 Kg",
+      "price": 75
+    },
+    {
+      "name": "Pears - 1 Kg",
+      "price": 69
+    },
+    {
+      "name": "Pomegranate - 1 Kg",
+      "price": 95
+    },
+    {
+      "name": "Raspberry - 1/4 Kg",
+      "price": 160
+    },
+    {
+      "name": "Strawberry - 1/4 Kg",
+      "price": 180
+    },
+    {
+      "name": "Water Melon - 1 Kg",
+      "price": 28
+    },
+    {
+      "name": "Almonds - 1/4 Kg",
+      "price": 200
+    },
+    {
+      "name": "Pista - 1/4 Kg",
+      "price": 190
+    },
+    {
+      "name": "Nuts Mixture - 1 Kg",
+      "price": 950
+    },
+    {
+      "name": "Cashews - 1 Kg",
+      "price": 650
+    },
+    {
+      "name": "Walnuts - 1/4 Kg",
+      "price": 170
+    }
+  ]
+  
