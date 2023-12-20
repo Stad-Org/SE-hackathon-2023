@@ -21,3 +21,122 @@ describe('My Test Suite', function () {
     // Add more tests based on your requirements
   });
 });
+
+// cypress/integration/cart_spec.js
+
+describe('Add Products to Cart', function () {
+  beforeEach(function () {
+    // Visit the website before each test
+    cy.visit('https://rahulshettyacademy.com/seleniumPractise#/');
+  });
+
+  it('should add a single product to the cart', function () {
+    cy.get('.search-keyword').type('Cauliflower');
+    cy.get('.products .product').first().contains('ADD TO CART').click();
+
+    // Wait for the cart to be updated and then make assertions
+    cy.get('.cart-info table tbody tr td strong').should('contain', '1');
+    // Add more assertions based on your specific implementation for total amount calculation
+  });
+});
+
+// cypress/integration/cart_spec.js
+
+describe('Add Products to Cart 2', function () {
+  beforeEach(function () {
+    // Visit the website before each test
+    cy.visit('https://rahulshettyacademy.com/seleniumPractise#/');
+  });
+
+  
+  it('should add a single product to the cart', function () {
+    // Load the product fixture
+    cy.fixture('product').then((product) => {
+      // Add a product to the cart
+      cy.get('.search-keyword').type(product.name);
+  
+      // Wait for the search to complete
+      cy.wait(1000); // Adjust the wait time as needed
+  
+      cy.get('.products .product').first().contains('ADD TO CART').click();
+  
+      // Wait for the cart to be updated and then make assertions
+      cy.get('.cart-info table tbody tr td strong').should('contain', '1'); // Check if the cart has 1 item
+  
+      // Add more assertions based on your specific implementation for total amount calculation
+      // For example, use the product price from the fixture
+      cy.get(':nth-child(2) > :nth-child(3) > strong').should('contain', product.price); // Check if the cart amount is correct
+  
+      // Check if the "PROCEED TO CHECKOUT" button is enabled
+      cy.get('.cart-preview button').should('not.be.disabled');
+    });
+  });
+  
+
+  // You can add more tests for different scenarios, such as adding multiple products, removing products, etc.
+});
+
+
+
+// describe('Add Products to Cart', function () {
+//   beforeEach(function () {
+//     // Visit the website before each test
+//     cy.visit('https://rahulshettyacademy.com/seleniumPractise#/');
+//   });
+
+
+//   it('should add a single product to the cart', function () {
+//     cy.get('.search-keyword').type('Cauliflower');
+//     cy.get('.products .product').first().contains('ADD TO CART').click();
+
+//     // Wait for the cart to be updated and then make assertions
+//     cy.get('.cart-info tbody td:nth-child(2)').invoke('text').should('contain', '1');
+//     // Add more assertions based on your specific implementation for total amount calculation
+//   });
+
+
+
+//   // it('should add multiple products to the cart', function () {
+//   //   cy.get('.search-keyword').type('Cauliflower');
+//   //   cy.get('.products .product').first().contains('ADD TO CART').click();
+
+//   //   cy.get('.search-keyword').clear().type('Carrot');
+//   //   cy.get('.products .product').first().contains('ADD TO CART').click();
+
+//   //   cy.get('.search-keyword').clear().type('Capsicum');
+//   //   cy.get('.products .product').first().contains('ADD TO CART').click();
+
+//   //   // Add a small delay to ensure the cart is updated before checking the content
+//   //   cy.wait(1000);
+
+//   //   // Add more assertions based on your specific implementation for multiple products
+//   // });
+
+//   // it('should add products with different quantities to the cart', function () {
+//   //   cy.get('.search-keyword').type('Cauliflower');
+//   //   cy.get('.products .product').first().find('.quantity').clear().invoke('removeAttr', 'disabled').type('3');
+//   //   cy.get('.products .product').first().contains('ADD TO CART').click();
+
+//   //   // Add a small delay to ensure the cart is updated before checking the content
+//   //   cy.wait(1000);
+
+//   //   // Add more assertions based on your specific implementation for different quantities
+//   // });
+
+//   // it('should add products with different categories to the cart', function () {
+//   //   cy.get('.search-keyword').type('Cauliflower');
+//   //   cy.get('.products .product').first().contains('ADD TO CART').click();
+
+//   //   cy.get('.search-keyword').clear().type('Cashews');
+//   //   cy.get('.products .product').first().contains('ADD TO CART').click();
+
+//   //   // Add a small delay to ensure the cart is updated before checking the content
+//   //   cy.wait(1000);
+
+//   //   // Add more assertions based on your specific implementation for different categories
+//   // });
+
+
+// });
+
+
