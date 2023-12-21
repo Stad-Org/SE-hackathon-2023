@@ -21,38 +21,38 @@ describe('Search for Products', function () {
     });
 
     it('should not display results for multiple search keywords', function () {
-        // Load the products fixture
-        cy.fixture('products').then((products) => {
-            // Take two products with different names from the JSON array
-            const product1 = products[0];
-            const product2 = products[1];
+      // Load the products fixture
+      cy.fixture('products').then((products) => {
+          // Take two products with different names from the JSON array
+          const product1 = products[0];
+          const product2 = products[1];
 
-            // Type the product names in the search field
-            const combinedKeywords = `${product1.name} ${product2.name}`;
-            cy.get('.search-keyword').type(combinedKeywords);
+          // Type the product names in the search field
+          const combinedKeywords = `${product1.name} ${product2.name}`;
+          cy.get('.search-keyword').type(combinedKeywords);
 
-            // Verify that no search results are displayed
-            cy.get('.products .product').should('not.exist');
+          // Verify that no search results are displayed
+          cy.get('.products .product').should('not.exist');
 
-        });
-        });
+      });
+    });
 
 
     it('should display all products that have the combination of letters typed', function () {
-    // Load the products fixture
-    cy.fixture('products').then((products) => {
-        // Take a product from the JSON array
-        const product = products[0];
+      // Load the products fixture
+      cy.fixture('products').then((products) => {
+          // Take a product from the JSON array
+          const product = products[0];
 
-        // Extract a substring of the product name to search for
-        const searchSubstring = product.name.substring(0, 3);
+          // Extract a substring of the product name to search for
+          const searchSubstring = product.name.substring(0, 3);
 
-        // Type the substring in the search field
-        cy.get('.search-keyword').type(searchSubstring);
+          // Type the substring in the search field
+          cy.get('.search-keyword').type(searchSubstring);
 
         // Get expected results
         const expectedResults = products.filter((product) => {
-        return product.name.includes(searchSubstring);
+          return product.name.includes(searchSubstring);
         });
 
 
@@ -66,3 +66,24 @@ describe('Search for Products', function () {
 
     
   });
+
+
+
+
+describe('Search for \"ca\" and count the results', function () {
+  it('Visit the website and perform some tests', function () {
+    // Visit the website
+    cy.visit('https://rahulshettyacademy.com/seleniumPractise#/');
+
+    // Verify the title of the page
+    cy.title().should('eq', 'GreenKart - veg and fruits kart');
+
+    // Search for "ca"
+    cy.get('.search-keyword').type('ca');
+
+    // Count the result, it should have a lenght of 4 for [Cauliflower , Carrot, Capsicum, Cashews  ]
+    cy.get('.products .product').should('have.length', 4);
+
+  });
+});
+  
