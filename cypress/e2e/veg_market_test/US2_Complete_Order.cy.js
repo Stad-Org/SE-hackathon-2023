@@ -62,7 +62,7 @@ describe('As a user I want to create and complete the order for the products I h
       cy.get('.products table .amount').last().should('contain', actualTotalAmount);
     };
   
-    const completeOrder = () => {
+    function completeOrder()  {
       cy.contains('Place Order').click();
       cy.get('select').select('Greece');
       cy.get('[type="checkbox"]').check();
