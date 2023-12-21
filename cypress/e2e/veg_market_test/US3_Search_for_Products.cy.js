@@ -50,8 +50,14 @@ describe('Search for Products', function () {
         // Type the substring in the search field
         cy.get('.search-keyword').type(searchSubstring);
 
+        // Get expected results
+        const expectedResults = products.filter((product) => {
+        return product.name.includes(searchSubstring);
+        });
+
+
         // Verify that search results contain all products with the search substring
-        cy.get('.products .product').should('have.length.greaterThan', 0);
+        cy.get('.products .product').should('have.length', expectedResults.length);
         cy.get('.products .product .product-name').each(($el) => {
         cy.wrap($el.text()).should('contain', searchSubstring);
         });
