@@ -149,37 +149,92 @@
 // });
 
 
-describe('Test Case TC403 - Search for Top Deals', () => {
+// describe('Test Case TC403 - Search for Top Deals', () => {
+
+//     beforeEach(() => {
+//         // Visit the offers page before each test
+//         cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/offers');
+//     });
+
+//     it('should be able to search for discounts in Top Deals', () => {
+//         // Step 1: Ensure the deals table is visible
+//         cy.get('table').should('be.visible');
+
+//         function testSearch(searchString, expectedResults) {
+//             // Type the search string in the search field
+//             cy.get('#search-field').type(searchString);
+
+//             // Verify that search results contain the expected products
+//             cy.get('tr td:nth-child(1)').each(($el, index, $list) => {
+//                 const productName = $el.text();
+//                 expect(expectedResults).to.include(productName);
+//             });
+
+//             // Clear the search field
+//             cy.get('#search-field').clear();
+//         }
+
+//         // Step 2: Search for a product that exists
+//         testSearch('Cucumber', ['No data']);
+//         testSearch('Mango', ['Mango']);
+//         testSearch('Apple', ['Apple', 'Pineapple']);
+
+//     });
+// });
+
+
+describe('Test Case TC404 - Sort the Top Deals table', () => {
 
     beforeEach(() => {
         // Visit the offers page before each test
         cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/offers');
+        cy.get('table').should('be.visible');
     });
 
-    it('should be able to search for discounts in Top Deals', () => {
-        // Step 1: Ensure the deals table is visible
-        cy.get('table').should('be.visible');
-
-        function testSearch(searchString, expectedResults) {
-            // Type the search string in the search field
-            cy.get('#search-field').type(searchString);
-
-            // Verify that search results contain the expected products
-            cy.get('tr td:nth-child(1)').each(($el, index, $list) => {
-                const productName = $el.text();
-                expect(expectedResults).to.include(productName);
+    const columns = ['Veg/fruit name', 'Price', 'Discount price'];
+    columns.forEach(column => {
+        it(`should sort by ${column} in ascending and descending order`, () => {
+            // Click column header to sort in ascending order
+            cy.get('th').contains(column).click();
+            cy.get(`table tr td:nth-child(${columns.indexOf(column) + 1})`).then($cells => {
+                const original = $cells.map((index, cell) => cell.innerText).get();
+                expect(original).to.deep.equal([...original].sort());
             });
 
-            // Clear the search field
-            cy.get('#search-field').clear();
-        }
-
-        // Step 2: Search for a product that exists
-        testSearch('Cucumber', ['No data']);
-        testSearch('Mango', ['Mango']);
-        testSearch('Apple', ['Apple', 'Pineapple']);
-
+            // Click column header again to sort in descending order
+            cy.get('th').contains(column).click();
+            cy.get(`table tr td:nth-child(${columns.indexOf(column) + 1})`).then($cells => {
+                const original = $cells.map((index, cell) => cell.innerText).get();
+                expect(original).to.deep.equal([...original].sort().reverse());
+            });
+        });
     });
 
+    columns.forEach(column => {
+        it(`should navigate through pages and maintain sorting of ${column}`, () => {
+
+            // If not already sorted by column, sort by column
+                
+            cy.get('th').contains(column).click();
+
+            const navigateAndCheckSorting = () => {
+                cy.get(`table tr td:nth-child(${columns.indexOf(column) + 1})`).then($cells => {
+                    const original = $cells.map((index, cell) => cell.innerText).get();
+                    expect(original).to.deep.equal([...original].sort());
+                });
+            };
+
+            // Navigate through pages
+            cy.get('.pagination').get('a[aria-label="Next"]').as('nextButton');
+            cy.get('.pagination').get('a[aria-label="First"]').as('firstButton');
+
+            cy.get('@nextButton').click().then(($next) => {
+                if ($next.is(':visible')) {
+                    navigateAndCheckSorting();
+                    cy.get('@firstButton').click(); // Return to first page
+                }
+            });
+        });
+    }); 
 });
 
