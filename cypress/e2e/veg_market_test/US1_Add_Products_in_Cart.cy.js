@@ -1,6 +1,6 @@
 // US1: Add Products in the Cart  
 
-// Replace the "TODO" with something else 
+// Replace the "TODO" with something else !!!!!!
 
 // Test Case ID  TODO (give it a number)
 describe('Add the First Product to Cart', function () {
@@ -93,6 +93,7 @@ describe('Add the first Product to Cart with 2 quantity', function () {
 });
 
 
+// Test Case ID  TODO (give it a number)
 describe('Add the Product to Cart with \"wrong\" quantity', function () {
   beforeEach(function () {
     // Visit the website before each test
@@ -140,6 +141,7 @@ describe('Add the Product to Cart with \"wrong\" quantity', function () {
 
 
 
+// Test Case ID  TODO (give it a number)
 describe('Add every product to the cart by it self and check the price is as expected', function () {
   beforeEach(function () {
     // Visit the website before each test
@@ -187,6 +189,7 @@ describe('Add every product to the cart by it self and check the price is as exp
 
 
 
+// Test Case ID  TODO (give it a number)
 describe('Add all products to the cart one by one and check the price is as expected', function () {
   beforeEach(function () {
     // Visit the website before each test
