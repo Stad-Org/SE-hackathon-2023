@@ -1,8 +1,10 @@
 // US1: Add Products in the Cart  
 
+const { forEach } = require("cypress/types/lodash");
+
 // Replace the "TODO" with something else 
 
-// Test Case ID  TODO
+// Test Case ID  TODO (give it a number)
 describe('Add the First Product to Cart', function () {
   beforeEach(function () {
     // Visit the website before each test
@@ -46,6 +48,7 @@ describe('Add the First Product to Cart', function () {
 
 
 
+// Test Case ID  TODO (give it a number)
 describe('Add the first Product to Cart with 2 quantity', function () {
   beforeEach(function () {
     // Visit the website before each test
@@ -98,103 +101,138 @@ describe('Add the Product to Cart with \"wrong\" quantity', function () {
     cy.visit('https://rahulshettyacademy.com/seleniumPractise#/');
   });
 
-
-  // Should not be clickable
-  it('Search and add -1 of each product to the cart ', function () {
-    // Load the products fixture
-    cy.fixture('products').then((products) => {
-
-      // Iterate through each product
-      products.forEach((product) => {
-        // Reload the page before adding each product
-        cy.reload();
-
-        const how_many_items = -1 ; 
-
-        // Type the product name in the search field
-        cy.get('.search-keyword').type(product.name);
-
-        // The search here should yield only one result
-        cy.get('.products .product').its('length').should('eq', 1); 
-
-        // Check that product has correct name and price
-        cy.get('.products .product').first().find('.product-name').should('contain', product.name);
-        cy.get('.products .product').first().find('.product-price').should('contain', product.price);
-
-        // Write the quantity wanted
-        cy.get('.stepper-input .quantity').clear().type(how_many_items);
-
-        // Check if the "ADD TO CART" button for wrong quantity of product is not clickable
-        cy.get('.products .product').first().contains('ADD TO CART').should('not.be.enabled');
-            
-      });
-    });
-  });
-
   
   // Should not be clickable
-  it('Search and add \"random_string\" of each product to the cart ', function () {
+  it('Search and add \"wrong\" quantity of each product to the cart ', function () {
     // Load the products fixture
     cy.fixture('products').then((products) => {
 
-      // Iterate through each product
-      products.forEach((product) => {
-        // Reload the page before adding each product
-        cy.reload();
+      const test_ipnuts = ["0.5", "0", "-1", "random_string", "+1E4"];
 
-        const how_many_items = "random_string" ; 
-
-        // Type the product name in the search field
-        cy.get('.search-keyword').type(product.name);
-
-        // The search here should yield only one result
-        cy.get('.products .product').its('length').should('eq', 1); 
-
-        // Check that product has correct name and price
-        cy.get('.products .product').first().find('.product-name').should('contain', product.name);
-        cy.get('.products .product').first().find('.product-price').should('contain', product.price);
-
-        // Write the quantity wanted
-        cy.get('.stepper-input .quantity').clear().type(how_many_items);
-
-        // Check if the "ADD TO CART" button for wrong quantity of product is not clickable
-        cy.get('.products .product').first().contains('ADD TO CART').should('not.be.enabled');
-            
+      test_ipnuts.forEach(how_many_items => {
+        // Iterate through each product
+        products.forEach((product) => {
+          // Reload the page before adding each product
+          cy.reload();
+                    
+          // Type the product name in the search field
+          cy.get('.search-keyword').type(product.name);
+          
+          // The search here should yield only one result
+          cy.get('.products .product').its('length').should('eq', 1); 
+          
+          // Check that product has correct name and price
+          cy.get('.products .product').first().find('.product-name').should('contain', product.name);
+          cy.get('.products .product').first().find('.product-price').should('contain', product.price);
+          
+          // Write the quantity wanted
+          cy.get('.stepper-input .quantity').clear().type(how_many_items);
+          
+          // Check if the "ADD TO CART" button for wrong quantity of product is not clickable
+          cy.get('.products .product').first().contains('ADD TO CART').should('not.be.enabled');
+          
+        });
       });
     });
   });
+    
+    
+  //   // Should not be clickable
+  //   it('Search and add -1 of each product to the cart ', function () {
+  //     // Load the products fixture
+  //     cy.fixture('products').then((products) => {
+        
+  //     // Iterate through each product
+  //     products.forEach((product) => {
+  //       // Reload the page before adding each product
+  //       cy.reload();
 
-  // Should not be clickable
-  it('Search and add \"+1E4\" of each product to the cart ', function () {
-    // Load the products fixture
-    cy.fixture('products').then((products) => {
+  //       const how_many_items = -1 ; 
 
-      // Iterate through each product
-      products.forEach((product) => {
-        // Reload the page before adding each product
-        cy.reload();
+  //       // Type the product name in the search field
+  //       cy.get('.search-keyword').type(product.name);
 
-        const how_many_items = "+1E4" ; 
+  //       // The search here should yield only one result
+  //       cy.get('.products .product').its('length').should('eq', 1); 
 
-        // Type the product name in the search field
-        cy.get('.search-keyword').type(product.name);
+  //       // Check that product has correct name and price
+  //       cy.get('.products .product').first().find('.product-name').should('contain', product.name);
+  //       cy.get('.products .product').first().find('.product-price').should('contain', product.price);
 
-        // The search here should yield only one result
-        cy.get('.products .product').its('length').should('eq', 1); 
+  //       // Write the quantity wanted
+  //       cy.get('.stepper-input .quantity').clear().type(how_many_items);
 
-        // Check that product has correct name and price
-        cy.get('.products .product').first().find('.product-name').should('contain', product.name);
-        cy.get('.products .product').first().find('.product-price').should('contain', product.price);
-
-        // Write the quantity wanted
-        cy.get('.stepper-input .quantity').clear().type(how_many_items);
-
-        // Check if the "ADD TO CART" button for wrong quantity of product is not clickable
-        cy.get('.products .product').first().contains('ADD TO CART').should('not.be.enabled');
+  //       // Check if the "ADD TO CART" button for wrong quantity of product is not clickable
+  //       cy.get('.products .product').first().contains('ADD TO CART').should('not.be.enabled');
             
-      });
-    });
-  });
+  //     });
+  //   });
+  // });
+
+  
+  // // Should not be clickable
+  // it('Search and add \"random_string\" of each product to the cart ', function () {
+  //   // Load the products fixture
+  //   cy.fixture('products').then((products) => {
+
+  //     // Iterate through each product
+  //     products.forEach((product) => {
+  //       // Reload the page before adding each product
+  //       cy.reload();
+
+  //       const how_many_items = "random_string" ; 
+
+  //       // Type the product name in the search field
+  //       cy.get('.search-keyword').type(product.name);
+
+  //       // The search here should yield only one result
+  //       cy.get('.products .product').its('length').should('eq', 1); 
+
+  //       // Check that product has correct name and price
+  //       cy.get('.products .product').first().find('.product-name').should('contain', product.name);
+  //       cy.get('.products .product').first().find('.product-price').should('contain', product.price);
+
+  //       // Write the quantity wanted
+  //       cy.get('.stepper-input .quantity').clear().type(how_many_items);
+
+  //       // Check if the "ADD TO CART" button for wrong quantity of product is not clickable
+  //       cy.get('.products .product').first().contains('ADD TO CART').should('not.be.enabled');
+            
+  //     });
+  //   });
+  // });
+
+  // // Should not be clickable
+  // it('Search and add \"+1E4\" of each product to the cart ', function () {
+  //   // Load the products fixture
+  //   cy.fixture('products').then((products) => {
+
+  //     // Iterate through each product
+  //     products.forEach((product) => {
+  //       // Reload the page before adding each product
+  //       cy.reload();
+
+  //       const how_many_items = "+1E4" ; 
+
+  //       // Type the product name in the search field
+  //       cy.get('.search-keyword').type(product.name);
+
+  //       // The search here should yield only one result
+  //       cy.get('.products .product').its('length').should('eq', 1); 
+
+  //       // Check that product has correct name and price
+  //       cy.get('.products .product').first().find('.product-name').should('contain', product.name);
+  //       cy.get('.products .product').first().find('.product-price').should('contain', product.price);
+
+  //       // Write the quantity wanted
+  //       cy.get('.stepper-input .quantity').clear().type(how_many_items);
+
+  //       // Check if the "ADD TO CART" button for wrong quantity of product is not clickable
+  //       cy.get('.products .product').first().contains('ADD TO CART').should('not.be.enabled');
+            
+  //     });
+  //   });
+  // });
 
 
 });
