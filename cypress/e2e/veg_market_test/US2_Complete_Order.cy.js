@@ -1,12 +1,12 @@
 
-describe('Add the First Product to Cart',  () => {
+describe('As a user I want to create and complete the order for the products I have in the cart',  () => {
     beforeEach( () => {
       // Visit the website before each test
       cy.visit('https://rahulshettyacademy.com/seleniumPractise#/');
     });
 
     
-    it('should add the first product to the cart',  () => {
+    it('should place an order',  () => {
         // Load the products fixture
         cy.fixture('products').then((products) => {
             // Take only the first product from the JSON array
