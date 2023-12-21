@@ -102,9 +102,9 @@ describe('Add Products to Cart', function () {
         // Every search here should yield only one result
         cy.get('.products .product').its('length').should('eq', 1); 
 
-              // Check that product has correct name and price
-      cy.get('.products .product').first().find('.product-name').should('contain', product.name);
-      cy.get('.products .product').first().find('.product-price').should('contain', product.price);
+        // Check that product has correct name and price
+        cy.get('.products .product').first().find('.product-name').should('contain', product.name);
+        cy.get('.products .product').first().find('.product-price').should('contain', product.price);
 
         // Click the "ADD TO CART" button for the first product
         cy.get('.products .product').first().contains('ADD TO CART').click();
