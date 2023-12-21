@@ -160,6 +160,7 @@ describe('Add Products to Cart', function () {
       // Iterate through each product
 
       var total_sum = 0 ; 
+      var number_of_items_added_to_card = 0 ; 
 
       products.forEach((product) => {
 
@@ -174,12 +175,13 @@ describe('Add Products to Cart', function () {
         cy.get('.products .product').first().find('.product-price').should('contain', product.price);
 
         total_sum += product.price ; 
+        number_of_items_added_to_card++ ; 
 
         // Click the "ADD TO CART" button for the first product
         cy.get('.products .product').first().contains('ADD TO CART').click();
 
         // Wait for the cart to be updated and then make assertions
-        cy.get('.cart-info table tbody tr td strong').should('contain', '1'); // Check if the cart has 1 item
+        cy.get('.cart-info table tbody tr td strong').should('contain', number_of_items_added_to_card); // Check if the cart has 1 item
 
         // Add more assertions based on your specific implementation for total amount calculation
         // For example, use the product price from the fixture
