@@ -1,27 +1,25 @@
-function addProductToCart(product) {
+
+function addProductToCart(product , quantity = 1) { 
 	// Type the product name in the search field
-	cy.get(".search-keyword").type(product.name);
+	cy.get('.search-keyword').type(product.name);
 
 	// Every search here should yield only one result
-	cy.get(".products .product").its("length").should("eq", 1);
+	cy.get('.products .product').its('length').should('eq', 1);
 
 	// Check that product has correct name and price
-	cy.get(".products .product")
-		.first()
-		.find(".product-name")
-		.should("contain", product.name);
-	cy.get(".products .product")
-		.first()
-		.find(".product-price")
-		.should("contain", product.price);
+	cy.get('.products .product').first().find('.product-name').should('contain', product.name);
+	cy.get('.products .product').first().find('.product-price').should('contain', product.price);
+
+	// Write the quantity wanted
+	cy.get('.stepper-input .quantity').clear().type(quantity);
 
 	// Find the product with product.name and add it to cart
-	cy.contains(".product .product-name", product.name)
-		.parents(".product")
-		.find(".product-action button")
-		.contains("ADD TO CART")
+	cy.contains('.product .product-name', product.name)
+		.parents('.product')
+		.find('.product-action button')
+		.contains('ADD TO CART')
 		.click();
-}
+};
 
 function validateProductInCart(productName, productPrice) {
 	// Click on the cart icon to go to the cart page
