@@ -237,6 +237,49 @@ describe('Test Case TC404 - Sort the Top Deals table', () => {
                 }
             });
         });
-    }); 
+    });  
+});
+
+
+describe('Test Case TC405 - Use the calendar feature on the Top Deals page', () => {
+
+    beforeEach(() => {
+        // Visit the Top Deals page before each test
+        cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/offers');
+    });
+
+    it('should use the calendar feature to filter deals based on delivery date', () => {
+        // Check if the calendar feature is visible
+        cy.get('.react-date-picker__inputGroup').should('be.visible');
+
+        // Click on the calendar icon to open the date picker
+        cy.get('.react-date-picker__inputGroup').click();
+        cy.get('.react-date-picker__calendar').should('be.visible');
+
+        // Navigate to the next month
+        cy.get('.react-calendar__navigation__next-button').should('be.visible').wait(4000).click();
+
+        // Navigate to the next year and select a day
+        cy.get('.react-calendar__navigation__next2-button').should('be.visible').wait(4000).click();
+
+        cy.get('.react-calendar__tile:not(.react-calendar__tile--muted)').first().click();
+
+
+        // Check if the calendar feature is visible
+        cy.get('.react-date-picker__inputGroup').should('be.visible');
+
+        // Click on the calendar icon to open the date picker
+        cy.get('.react-date-picker__inputGroup').click();
+        cy.get('.react-date-picker__calendar').should('be.visible');
+
+        // Manually type a valid date in the calendar input field
+        const validDay = '12'
+        const validMonth = '02'
+        const validYear = '2024'
+        cy.get('.react-date-picker__inputGroup__day').type(validDay).type('{enter}');
+        cy.get('.react-date-picker__inputGroup__month').type(validMonth).type('{enter}');
+        cy.get('.react-date-picker__inputGroup__year').type(validYear).type('{enter}');
+
+    });
 });
 
