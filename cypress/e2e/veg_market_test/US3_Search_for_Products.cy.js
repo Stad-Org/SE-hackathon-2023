@@ -69,9 +69,10 @@ describe('Search for Products', function () {
 
 
 
-
+// TC 304
 describe('Search for \"ca\" and count the results', function () {
-  it('Visit the website and perform some tests', function () {
+
+  it('Visit the website and search for \"ca\" and count the results', function () {
     // Visit the website
     cy.visit('https://rahulshettyacademy.com/seleniumPractise#/');
 
@@ -85,5 +86,6 @@ describe('Search for \"ca\" and count the results', function () {
     cy.get('.products .product').should('have.length', 4);
 
   });
+
 });
   
