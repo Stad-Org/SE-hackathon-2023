@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "prestart": "npm install",
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx cypress open",
+    "test": "echo \"The tests are runned via the interactive window of cypress, to launch it run 'npm start'\" && exit 0"
   },
   "author": "",
   "license": "ISC",
