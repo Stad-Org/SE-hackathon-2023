@@ -1,7 +1,7 @@
 # SE-hackathon-2023
 ## Who are we?
 Κακανδρής Ιάσονας (deepblue597)   
-Λιουλιάκης Νικόλαος (Nick-Liou) nliouliak@ece.auth.gr
+Λιουλιάκης Νικόλαος (Nick-Liou) nliouliak@ece.auth.gr  
 Μαχμουτάϊ Έλενα (Elemxm)   
 Μποσινάκη Κωνσταντίνα (Nantina)   
 Συσκάκης Παναγιώτης (Pansysk75)   
