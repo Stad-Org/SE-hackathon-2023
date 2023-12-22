@@ -2,7 +2,7 @@
 
 import { getRandomInt } from '../../support/utils.js';
 
-// Test Case ID  TC101
+// Test Case ID  TC103
 describe('Add the First Product to Cart', function () {
   beforeEach(function () {
     // Visit the website before each test
@@ -44,7 +44,7 @@ describe('Add the First Product to Cart', function () {
 });
 
 
-// Test Case ID  TC102
+// Test Case ID  TC104
 describe('Add the first Product to Cart with 2 quantity', function () {
   beforeEach(function () {
     // Visit the website before each test
@@ -91,7 +91,7 @@ describe('Add the first Product to Cart with 2 quantity', function () {
 });
 
 
-// Test Case ID  TC103
+// Test Case ID  TC105
 describe('Add the Product to Cart with \"wrong\" quantity', function () {
   beforeEach(function () {
     // Visit the website before each test
@@ -137,7 +137,7 @@ describe('Add the Product to Cart with \"wrong\" quantity', function () {
 });
 
 
-// Test Case ID  TC104
+// Test Case ID  TC106
 describe('Add every product to the cart by it self and check the price is as expected', function () {
   beforeEach(function () {
     // Visit the website before each test
@@ -183,7 +183,7 @@ describe('Add every product to the cart by it self and check the price is as exp
 });
 
 
-// Test Case ID  TC105
+// Test Case ID  TC107
 describe('Add all products to the cart one by one and check the price is as expected', function () {
   beforeEach(function () {
     // Visit the website before each test
@@ -234,7 +234,7 @@ describe('Add all products to the cart one by one and check the price is as expe
 });
 
 
-// Test Case ID  TC106
+// Test Case ID  TC108
 describe('Add all products to the cart one by one with a random quantity and check the price is as expected', function () {
   beforeEach(function () {
     // Visit the website before each test
