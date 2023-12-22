@@ -1,11 +1,13 @@
 
-function getRandomInt(min, max) {
-  // Use Math.floor to round down to the nearest integer
-  // Use Math.random to generate a random decimal between 0 and 1
-  // Multiply the result by the range (max - min + 1) and add the minimum value
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+// function getRandomInt(min, max) {
+//   // Use Math.floor to round down to the nearest integer
+//   // Use Math.random to generate a random decimal between 0 and 1
+//   // Multiply the result by the range (max - min + 1) and add the minimum value
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
 
+
+import { getRandomInt } from '../../support/utils';
 
 describe('As a user I want to create and complete the order for the products I have in the cart', () => {
     beforeEach(() => {
@@ -16,8 +18,6 @@ describe('As a user I want to create and complete the order for the products I h
     function addProductToCart(product , quantity = 1) { 
       // Type the product name in the search field
       cy.get('.search-keyword').type(product.name);
-      // cy.get('.search-keyword').should('not.have.attr', 'disabled').type(product.name);
-
   
       // Every search here should yield only one result
       cy.get('.products .product').its('length').should('eq', 1);
@@ -114,9 +114,8 @@ describe('As a user I want to create and complete the order for the products I h
     it('Place an odrer with random item and random quantity', () => {
       // Load the products fixture
       cy.fixture('products').then((products) => {
-        // Take only the first product from the JSON array
-        const product = products[getRandomInt(1, products.length)];
-        
+        // Take a random product from the JSON array
+        const product = products[getRandomInt(1, products.length)];        
         const quantity = getRandomInt(1, 10) ; 
 
         // Step 1: Add product to cart
