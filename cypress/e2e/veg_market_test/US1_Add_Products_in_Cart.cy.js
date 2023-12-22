@@ -289,3 +289,91 @@ describe('Add all products to the cart one by one with a random quantity and che
     });
   });
 });
+
+
+describe('Test Case TC109 - Test plus and minus buttons for product quantity', () => {
+  beforeEach(() => {
+    // Visit the website before each test
+    cy.visit('https://rahulshettyacademy.com/seleniumPractise#/');
+  });
+
+  it('Test plus and minus buttons for product quantity', () => {
+    // Load the products fixture
+    cy.fixture('products').then((products) => {
+
+      function testPlusButton(product) {
+        // Find the product with product.name and get its current quantity
+        cy.contains('.product .product-name', product.name)
+          .parents('.product')
+          .find('.stepper-input .quantity')
+          .invoke('val')
+          .then((quantity) => {
+            // Click the plus button
+            cy.contains('.product .product-name', product.name)
+              .parents('.product')
+              .find('.stepper-input .increment')
+              .click();
+
+            // Check that the quantity is incremented by one
+            cy.contains('.product .product-name', product.name)
+              .parents('.product')
+              .find('.stepper-input .quantity')
+              .should('have.value', parseInt(quantity, 10) + 1);
+          });
+        }
+      
+      function testMinusButton(product) {
+        // Find the product with product.name and get its current quantity
+        cy.contains('.product .product-name', product.name)
+          .parents('.product')
+          .find('.stepper-input .quantity')
+          .invoke('val')
+          .then((quantity) => {
+            // Click the minus button. If the quantity is 1, the button should do nothing
+            cy.contains('.product .product-name', product.name)
+              .parents('.product')
+              .find('.stepper-input .decrement')
+              .click();
+              // Check that the quantity is decremented by one, unless it was already 1
+              cy.contains('.product .product-name', product.name)
+                .parents('.product')
+                .find('.stepper-input .quantity')
+                .should('have.value', Math.max(parseInt(quantity, 10) - 1, 1));
+          });
+        }
+  
+        
+      // Iterate through each product
+      products.forEach((product) => {
+        // Reload the page before adding each product
+        cy.reload();
+
+        // get product identifier in page
+        
+
+
+        // Type the product name in the search field
+        cy.get('.search-keyword').type(product.name);
+
+        // Every search here should yield only one result
+        cy.get('.products .product').its('length').should('eq', 1); 
+
+        // Test plus button a bunch of times
+        for (let i = 0; i < 10; i++) {
+          testPlusButton(product);
+        }
+
+        // Test minus button a bunch of times
+        for (let i = 0; i < 10; i++) {
+          testMinusButton(product);
+        }
+        // Test minus button a bunch of more times, to assert that the quantity cannot go below 1
+        for (let i = 0; i < 10; i++) {
+          testMinusButton(product);
+        }
+
+      });
+
+    });
+  });
+});
