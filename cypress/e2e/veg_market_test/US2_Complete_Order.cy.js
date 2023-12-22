@@ -1,12 +1,16 @@
+
 describe('As a user I want to create and complete the order for the products I have in the cart', () => {
     beforeEach(() => {
       // Visit the website before each test
       cy.visit('https://rahulshettyacademy.com/seleniumPractise#/');
     });
   
-    function addProductToCart(product) { 
+    function addProductToCart(product , quantity = 1) { 
       // Type the product name in the search field
-      cy.get('.search-keyword').type(product.name);
+      // Example assuming you're using Cypress commands in a test
+      cy.get('.search-keyword').should('not.have.attr', 'disabled').type(product.name);
+
+      // cy.get('.search-keyword').type(product.name);
   
       // Every search here should yield only one result
       cy.get('.products .product').its('length').should('eq', 1);
@@ -15,6 +19,9 @@ describe('As a user I want to create and complete the order for the products I h
       cy.get('.products .product').first().find('.product-name').should('contain', product.name);
       cy.get('.products .product').first().find('.product-price').should('contain', product.price);
   
+      // Write the quantity wanted
+      cy.get('.stepper-input .quantity').clear().type(quantity);
+
       // Find the product with product.name and add it to cart
       cy.contains('.product .product-name', product.name)
         .parents('.product')
@@ -95,5 +102,32 @@ describe('As a user I want to create and complete the order for the products I h
         completeOrder();
       });
     });
+
+    
+    it('Place an odrer with multiple items', () => {
+      // Load the products fixture
+      cy.fixture('products').then((products) => {
+        // Take only the first product from the JSON array
+        const product = products[0];
+  
+        var quantity = 3 ; 
+
+        // Step 1: Add product to cart
+        addProductToCart(product, quantity);
+  
+        // Step 2: Validate product in the cart
+        validateProductInCart(product.name, product.price);
+  
+        // Step 3: Validate total amount
+        validateTotalAmount(product.price * quantity); // Assuming quantity is 1
+  
+        // Step 4: Validate checkout page
+        validateCheckoutPage(product.name, quantity, product.price, product.price * quantity);
+  
+        // Step 5: Complete the order
+        completeOrder();
+      });
+    });
+
   });
   
