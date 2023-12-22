@@ -1,10 +1,12 @@
 # SE-hackathon-2023
 ## Who are we?
-Κακανδρής Ιάσονας (deepblue597)   
-Λιουλιάκης Νικόλαος (Nick-Liou)   
-Μαχμουτάϊ Έλενα (Elemxm)   
-Μποσινάκη Κωνσταντίνα (Nantina)   
-Συσκάκης Παναγιώτης (Pansysk75)   
+Όνομα ομάδας: **Άτζαηλ Γιαχνί**   
+
+Κακανδρής Ιάσονας (deepblue597) kiasonas@ece.auth.gr   
+Λιουλιάκης Νικόλαος (Nick-Liou) nliouliak@ece.auth.gr    
+Μαχμουτάϊ Έλενα (Elemxm) elenmach@ece.auth.gr   
+Μποσινάκη Κωνσταντίνα (Nantina) kmposinak@ece.auth.gr   
+Συσκάκης Παναγιώτης (Pansysk75) panagiss@ece.auth.gr   
 
 ## Instructions:
 - run `npm start`
