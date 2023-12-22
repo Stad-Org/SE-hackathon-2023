@@ -1,4 +1,4 @@
-
+const gf = require("./global-functions.js");
 import { getRandomInt } from '../../support/utils.js';
 
 describe('As a user I want to create and complete the order for the products I have in the cart', () => {

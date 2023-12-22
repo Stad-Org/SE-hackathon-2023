@@ -1,3 +1,4 @@
+
 describe('Test Case TC401 - Navigate to Top Deals', () => {
 
     beforeEach(function () {
@@ -178,6 +179,7 @@ describe('Test Case TC403 - Search for Top Deals', () => {
         testSearch('Cucumber', ['No data']);
         testSearch('Mango', ['Mango']);
         testSearch('Apple', ['Apple', 'Pineapple']);
+        testSearch('67', []);
 
     });
 });
