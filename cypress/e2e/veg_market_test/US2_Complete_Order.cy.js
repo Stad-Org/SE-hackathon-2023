@@ -31,7 +31,7 @@ describe('As a user I want to create and complete the order for the products I h
 		});
 	});
 
-    
+  // TC204
   it('Place an odrer with random item and random quantity', () => {
     // Load the products fixture
     cy.fixture('products').then((products) => {
