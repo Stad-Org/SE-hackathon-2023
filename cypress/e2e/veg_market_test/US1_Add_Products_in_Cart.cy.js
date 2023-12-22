@@ -1,5 +1,11 @@
 // US1: Add Products in the Cart  
 
+function getRandomInt(min, max) {
+  // Use Math.floor to round down to the nearest integer
+  // Use Math.random to generate a random decimal between 0 and 1
+  // Multiply the result by the range (max - min + 1) and add the minimum value
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 // Test Case ID  TC101
 describe('Add the First Product to Cart', function () {
@@ -232,3 +238,59 @@ describe('Add all products to the cart one by one and check the price is as expe
   });
 });
 
+
+// Test Case ID  TC106
+describe('Add all products to the cart one by one with a random quantity and check the price is as expected', function () {
+  beforeEach(function () {
+    // Visit the website before each test
+    cy.visit('https://rahulshettyacademy.com/seleniumPractise#/');
+  });
+  
+
+  it('Add all products to the cart one by one with a random quantity and check the price is as expected', function () {
+    // Load the products fixture
+    cy.fixture('products').then((products) => {
+      
+      var total_sum = 0 ; 
+      var number_of_items_added_to_card = 0 ; 
+      
+      // Iterate through each product
+      products.forEach((product) => {
+
+        // Type the product name in the search field
+        cy.get('.search-keyword').type(product.name);
+
+        // Every search here should yield only one result
+        cy.get('.products .product').its('length').should('eq', 1); 
+
+        // Check that product has correct name and price
+        cy.get('.products .product').first().find('.product-name').should('contain', product.name);
+        cy.get('.products .product').first().find('.product-price').should('contain', product.price);
+
+        var how_many_items = getRandomInt(1, 100);
+
+        total_sum += how_many_items * product.price ; 
+        number_of_items_added_to_card++; // This counts unique products (thats why it's incremented by one )
+
+        
+        // Write the quantity wanted
+        cy.get('.stepper-input .quantity').clear().type(how_many_items);
+
+        // Click the "ADD TO CART" button for the first product
+        cy.get('.products .product').first().contains('ADD TO CART').click();
+
+        // Wait for the cart to be updated and then make assertions
+        cy.get('.cart-info table tbody tr td strong').should('contain', number_of_items_added_to_card); // Check if the cart has 1 item
+
+        // Use the product price from the fixture
+        cy.get(':nth-child(2) > :nth-child(3) > strong').should('contain', total_sum); // Check if the cart amount is correct
+
+        // Check if the "PROCEED TO CHECKOUT" button is enabled
+        cy.get('.cart-preview button').should('not.be.disabled');
+
+        // Clear the search field for the next iteration
+        cy.get('.search-keyword').clear();
+      });
+    });
+  });
+});
