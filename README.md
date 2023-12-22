@@ -5,7 +5,7 @@
 Κακανδρής Ιάσονας (deepblue597) kiasonas@ece.auth.gr   
 Λιουλιάκης Νικόλαος (Nick-Liou) nliouliak@ece.auth.gr    
 Μαχμουτάϊ Έλενα (Elemxm) elenmach@ece.auth.gr   
-Μποσινάκη Κωνσταντίνα (Nantina) kmposinak@ece.AUTH.gr   
+Μποσινάκη Κωνσταντίνα (Nantina) kmposinak@ece.auth.gr   
 Συσκάκης Παναγιώτης (Pansysk75) panagiss@ece.auth.gr   
 
 ## Instructions:
