@@ -1,10 +1,10 @@
 # SE-hackathon-2023
 ## Who are we?
-Κακανδρής Ιάσονας (deepblue597)
-Λιουλιάκης Νικόλαος (Nick-Liou)
-Μαχμουτάϊ Έλενα (Elemxm)
-Μποσινάκη Κωνσταντίνα (Nantina)
-Συσκάκης Παναγιώτης (Pansysk75)
+Κακανδρής Ιάσονας (deepblue597)   
+Λιουλιάκης Νικόλαος (Nick-Liou)   
+Μαχμουτάϊ Έλενα (Elemxm)   
+Μποσινάκη Κωνσταντίνα (Nantina)   
+Συσκάκης Παναγιώτης (Pansysk75)   
 
 ## Instructions:
 - run `npx cypress open`
