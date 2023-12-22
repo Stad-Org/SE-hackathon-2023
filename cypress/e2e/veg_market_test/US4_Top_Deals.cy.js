@@ -283,3 +283,76 @@ describe('Test Case TC405 - Use the calendar feature on the Top Deals page', () 
     });
 });
 
+
+describe('Defect D405 - Past dates available in calendar', () => {
+
+    beforeEach(() => {
+        // Visit the Top Deals page before each test
+        cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/offers');
+    });
+
+    it('should not allow past dates to be inserted', () => {
+        
+        
+        // Check if the calendar feature is visible
+        cy.get('.react-date-picker__inputGroup').should('be.visible');
+
+        // Click on the calendar icon to open the date picker
+        cy.get('.react-date-picker__inputGroup').click();
+        cy.get('.react-date-picker__calendar').should('be.visible');
+        // Select a day
+        cy.get('.react-calendar__tile:not(.react-calendar__tile--muted)').first().click();
+
+        // Extract the selected date from the calendar input field
+        cy.get('.react-date-picker__inputGroup input').invoke('val').then(selectedDate => {
+            // Extract the value attribute from the hidden input
+            cy.get('input[name="date"]').invoke('val').then(hiddenInputValue => {
+                // Compare the selected date with the value of the hidden input
+                const isDateValid = new Date(selectedDate) <= new Date(hiddenInputValue);
+                // Perform assertions based on the result
+                expect(isDateValid).to.be.false; 
+            });
+        });
+
+    });
+});
+
+
+describe('Defect D403 - Cancelling search with calendar use', () => {
+
+    beforeEach(() => {
+        cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/offers');
+    });
+
+    it('should not cancel the search when using the calendar', () => {
+
+        // Type a search in the search field
+        const searchTerm = 'Apple';
+        cy.get('#search-field').type(searchTerm);
+
+        // Verify that the search field still contains the typed search term
+        cy.get('#search-field').should('have.value', searchTerm);
+
+        // Check if the calendar feature is visible
+        cy.get('.react-date-picker__inputGroup').should('be.visible');
+
+        // Click on the calendar icon to open the date picker
+        cy.get('.react-date-picker__inputGroup').click();
+        cy.get('.react-date-picker__calendar').should('be.visible');
+        // Select a day
+        cy.get('.react-calendar__tile:not(.react-calendar__tile--muted)').first().click();
+
+        // Wait for the search results to be visible
+        cy.get('table').should('be.visible');
+
+        // Verify that the products corresponding to the search term are visible
+        cy.get('table tr').each(() => {
+            cy.get('td').eq(0).should('include.text', searchTerm);
+        });
+
+
+    });
+});
+
+
+
